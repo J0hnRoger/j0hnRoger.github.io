@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Joyeux Noël</title>
+    <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+        <div class="container">
+                <div class="row">
+                    <!-- flex-container -->
+                    <div class="col-md-12 flex-container">
+                        <!-- flex-item -->
+                        <div class="flex-item">
+                            <div class="flex-item-inner">
+                                <!-- card -->
+                                <div class="card-front">
+                                    <div class="quotes">"</div>
+                                    <p class="title">Oh,oh,oh ...</p>
+                                    <p class="desc"> Le père noël est proche du burnout en cette fin d'année, le pauvre vieux est débordé.</p>
+                                    <p class="desc"> Mais pas de panique, on prend le relais! Alors dis-nous, ma petite, qu'est-ce qui te ferait plaisir cette année? Sardines, bulots? </p>
+                                    <div class="quotes quotes--last">"</div>
+                                    <div class="signature">Les lupingouins</div>
+                                </div>
+                                <div class="card-back">
+                                    <h1>Liste de Noël</h1>
+                                    <textarea class="chrismas-list__area" name="chrismasList" 
+                                        id="txtChrismasList" 
+                                        cols="30" 
+                                        rows="10"
+                                        placeholder="Ne sois pas trop gourmande quand même, on débute!" ></textarea>
+                                    <img src="/assets/list_noel.png" alt="" />
+                                    <button class="chrismas-list__btn" id="btnSendToPapaNoel">Envoyer</button>
+                                </div>
+                                <!-- /card -->
+                            </div>
+                        </div>
+                        <!-- /flex-item -->
+                    </div>
+                    <!-- /flex-container -->
+                </div>
+            </div>
+            <script>
+
+                var clientId = '202373086533-smqvf6hfdrq80jm2k7464asmmlu4g27e.apps.googleusercontent.com';
+                var apiKey = 'AIzaSyDZUvW8KAVHSOGek443WxSheEIgOiAkUKQ';
+                var scopes = 'https://www.googleapis.com/auth/gmail.send';
+
+                function handleClientLoad() {
+                    gapi.client.setApiKey(apiKey);
+                    window.setTimeout(checkAuth, 1);
+                }
+                
+                function checkAuth() {
+                    gapi.auth.authorize({
+                    client_id: clientId,
+                    scope: scopes,
+                    immediate: true
+                    }, handleAuthResult);
+                }
+                function handleAuthClick() {
+                    gapi.auth.authorize({
+                    client_id: clientId,
+                    scope: scopes,
+                    immediate: false
+                    }, handleAuthResult);
+                    return false;
+                }
+                function handleAuthResult(authResult) {
+                    if(authResult && !authResult.error) {
+                    loadGmailApi();
+                    // $('#authorize-button').remove();
+                    // $('.table-inbox').removeClass("hidden");
+                    // $('#compose-button').removeClass("hidden");
+                    // } else {
+                    // $('#authorize-button').removeClass("hidden");
+                        button.addEventListener('click', function(e){
+                            handleAuthClick();
+                        });
+                    }
+                }
+                function loadGmailApi() {
+                    gapi.client.load('gmail', 'v1', function(){
+                        console.log("api loaded")
+                    });
+                }
+
+
+                var button = document.querySelector("#btnSendToPapaNoel");
+                
+                // Gmail API
+                function sendMessage(headers_obj, message, callback)
+                {
+                    var email = '';
+
+                    for(var header in headers_obj)
+                        email += header += ": "+headers_obj[header]+"\r\n";
+
+                    email += "\r\n" + message;
+
+                    var sendRequest = gapi.client.gmail.users.messages.send({
+                        'userId': 'me',
+                        'resource': {
+                        'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+                        }
+                    });
+
+                    return sendRequest.execute(callback);
+                }
+
+                function success () {
+                    alert("Merci! votre liste à bien été envoyée à nos pingouins-lutin!")
+                }
+
+                button.addEventListener("click",function(e){
+                    handleAuthClick();
+                    var chrismasList = document.querySelector("#txtChrismasList").value
+                    button.text = "bien envoyé!";
+                    sendMessage(
+                    {
+                        'To': "jonathan.roger4@gmail.com",
+                        'Subject': "Lettre au père noel"
+                        },
+                        chrismasList,
+                        success
+                    );
+                },false);
+
+            </script>
+        <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+</body>
+</html>
