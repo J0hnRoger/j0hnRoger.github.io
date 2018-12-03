@@ -10,47 +10,50 @@
 	<meta name="google-site-verification" content="qdA3AcdizKqno7nGicHLXQA6m8bO2ALoNJUcn4P-ctk" />
 </head>
 <body>
-        <div class="container">
-                <div class="row">
-                    <!-- flex-container -->
-                    <div class="col-md-12 flex-container">
-                        <!-- flex-item -->
-                        <div class="flex-item">
-                            <div class="flex-item-inner">
-                                <!-- card -->
-                                <div class="card-front">
-                                    <div class="quotes">"</div>
-                                    <p class="title">Oh,oh,oh ...</p>
-                                    <p class="desc"> Le père noël est proche du burnout en cette fin d'année, le pauvre vieux est débordé.</p>
-                                    <p class="desc"> Mais pas de panique, on prend le relais! Alors dis-nous, ma petite, qu'est-ce qui te ferait plaisir cette année? Sardines, bulots? </p>
-                                    <div class="quotes quotes--last">"</div>
-                                    <div class="signature">Les lupingouins</div>
-                                </div>
-                                <div class="card-back">
-                                    <h1>Liste de Noël</h1>
-                                    <textarea class="chrismas-list__area" name="chrismasList" 
-                                        id="txtChrismasList" 
-                                        cols="30" 
-                                        rows="10"
-                                        placeholder="Ne sois pas trop gourmande quand même, on débute!" ></textarea>
-                                    <img src="/assets/list_noel.png" alt="" />
-                                    <button class="chrismas-list__btn" id="btnSendToPapaNoel">Envoyer</button>
-                                </div>
-                                <!-- /card -->
+    <div>
+        <button id="btnAuth">Entrer!</button>
+    </div>
+    <div id="chrismas-app" class="container">
+            <div class="row">
+                <!-- flex-container -->
+                <div class="col-md-12 flex-container">
+                    <!-- flex-item -->
+                    <div class="flex-item">
+                        <div class="flex-item-inner">
+                            <!-- card -->
+                            <div class="card-front">
+                                <div class="quotes">"</div>
+                                <p class="title">Oh,oh,oh ...</p>
+                                <p class="desc"> Le père noël est proche du burnout en cette fin d'année, le pauvre vieux est débordé.</p>
+                                <p class="desc"> Mais pas de panique, on prend le relais! Alors dis-nous, ma petite, qu'est-ce qui te ferait plaisir cette année? Sardines, bulots? </p>
+                                <div class="quotes quotes--last">"</div>
+                                <div class="signature">Les lupingouins</div>
                             </div>
+                            <div class="card-back">
+                                <h1>Liste de Noël</h1>
+                                <textarea class="chrismas-list__area" name="chrismasList" 
+                                    id="txtChrismasList" 
+                                    cols="30" 
+                                    rows="10"
+                                    placeholder="Ne sois pas trop gourmande quand même, on débute!" ></textarea>
+                                <img src="/assets/list_noel.png" alt="" />
+                                <button class="chrismas-list__btn" id="btnSendToPapaNoel">Envoyer</button>
+                            </div>
+                            <!-- /card -->
                         </div>
-                        <!-- /flex-item -->
                     </div>
-                    <!-- /flex-container -->
+                    <!-- /flex-item -->
                 </div>
+                <!-- /flex-container -->
             </div>
+        </div>
             <script>
-
                 var clientId = '202373086533-smqvf6hfdrq80jm2k7464asmmlu4g27e.apps.googleusercontent.com';
                 var apiKey = 'AIzaSyDZUvW8KAVHSOGek443WxSheEIgOiAkUKQ';
                 var scopes = 'https://www.googleapis.com/auth/gmail.send';
-
+                
                 function handleClientLoad() {
+                    document.querySelector("#chrismas-app").hide()
                     gapi.client.setApiKey(apiKey);
                     window.setTimeout(checkAuth, 1);
                 }
@@ -78,7 +81,7 @@
                     // $('#compose-button').removeClass("hidden");
                     // } else {
                     // $('#authorize-button').removeClass("hidden");
-                        button.addEventListener('click', function(e){
+                        document.querySelector("#btnAuth").addEventListener('click', function(e){
                             handleAuthClick();
                         });
                     }
