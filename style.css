@@ -171,3 +171,9 @@ body {
     padding: 12px 45px;
     cursor: pointer;
 }
+
+/** Card Image **/
+
+.card__image {
+	width: 80%;
+}

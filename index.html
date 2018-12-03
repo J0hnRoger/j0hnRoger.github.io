@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Joyeux Noël</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
     <link rel="stylesheet" href="./assets/snow.css">
+    <link rel="stylesheet" href="./assets/pulse.css">
     <link rel="stylesheet" href="./style.css">
 	<meta name="google-site-verification" content="qdA3AcdizKqno7nGicHLXQA6m8bO2ALoNJUcn4P-ctk" />
 </head>
@@ -22,11 +24,12 @@
                     <!-- flex-item -->
                     <div class="flex-item">
                         <div class="flex-item-inner">
-                            <!-- card -->
+                            <!-- card 
                             <div class="card-front">
                                 <div class="quotes">"</div>
                                 <p class="title">Oh,oh,oh ...</p>
                                 <p class="desc"> Le père noël est proche du burnout en cette fin d'année, le pauvre vieux est débordé.</p>
+                                <p>Pour dire, il est même à la bourre pour faire son traditionnel calendrier de l'avent!</p>
                                 <p class="desc"> Mais pas de panique, on prend le relais! Alors dis-nous, ma petite, qu'est-ce qui te ferait plaisir cette année? Sardines, bulots? </p>
                                 <div class="quotes quotes--last">"</div>
                                 <div class="signature">Les lupingouins</div>
@@ -41,7 +44,23 @@
                                 <img src="/assets/list_noel.png" alt="" />
                                 <button class="chrismas-list__btn" id="btnSendToPapaNoel">Envoyer</button>
                             </div>
-                            <!-- /card -->
+                            <!-- card -->
+                            <!-- card 2 -->
+                            <div class="card-front">
+                                <div class="text"><div class="quotes">"</div>
+                                    <p class="title">Oh,oh,oh ...</p>
+                                    <p class="desc"> Nous avons bien reçu ta petite commande. Ça devrait arriver, peut-être, si tout va bien. Mais si on gère, on gère…</p>
+                                    <div class="quotes quotes--last">"</div>
+                                    <div class="signature">Service expé du père Noël</div>
+                                </div class="plan-container">
+                                    <div class="target pulsating-circle" />
+                                    <img class="card__image" src="./assets/plan.png" alt="">
+                                </div>
+                                <div class="card-back">
+                                    <h1>Jour 2</h1>
+                                    <img src="./assets/plan.png" alt="" />
+                                </div>
+                                <!-- Fin card2 -->
                         </div>
                     </div>
                     <!-- /flex-item -->
@@ -111,10 +130,9 @@
                     var sendRequest = gapi.client.gmail.users.messages.send({
                         'userId': 'me',
                         'resource': {
-                        'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+                            'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
                         }
                     });
-
                     return sendRequest.execute(callback);
                 }
 
