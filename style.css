@@ -175,5 +175,10 @@ body {
 /** Card Image **/
 
 .card__image {
-	width: 80%;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.plan-container {
+	position: relative;
 }
