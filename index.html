@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Joyeux Noël</title>
     <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./assets/snow.css">
+    <link rel="stylesheet" href="./style.css">
 	<meta name="google-site-verification" content="qdA3AcdizKqno7nGicHLXQA6m8bO2ALoNJUcn4P-ctk" />
 </head>
 <body>
-    <div>
-        <button id="btnAuth">Entrer!</button>
+    <div id="snow"></div>
+    <div id="chrismas-auth" class="chrismas__auth">
+        <button id="btnAuth" class="chrismas-list__btn">Entrer!</button>
     </div>
     <div id="chrismas-app" class="container">
             <div class="row">
@@ -47,6 +49,7 @@
                 <!-- /flex-container -->
             </div>
         </div>
+            <script src="assets/snow.js"></script>
             <script>
                 var clientId = '202373086533-smqvf6hfdrq80jm2k7464asmmlu4g27e.apps.googleusercontent.com';
                 var apiKey = 'AIzaSyDZUvW8KAVHSOGek443WxSheEIgOiAkUKQ';
@@ -78,14 +81,12 @@
                 }
                 function handleAuthResult(authResult) {
                     if(authResult && !authResult.error) {
-                    loadGmailApi();
-                    debugger
-                    // $('#authorize-button').remove();
-                    // $('.table-inbox').removeClass("hidden");
-                    // $('#compose-button').removeClass("hidden");
-                    // } else {
-                    // $('#authorize-button').removeClass("hidden");
-                        
+                        loadGmailApi();
+                        document.querySelector("#chrismas-app").style.display = "block"
+                        document.querySelector("#chrismas-auth").style.display = "none"
+                    } else {
+                        document.querySelector("#chrismas-app").style.display = "none"
+                        document.querySelector("#chrismas-auth").style.display = "block"
                     }
                 }
                 function loadGmailApi() {

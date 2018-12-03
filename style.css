@@ -1,12 +1,25 @@
 /*-------- global --------*/
+html {
+	height: 100%;
+}
+
 body {
 	background-color: rgba(48,79,254,0.1);
 	font-family: 'Mountains of Christmas', cursive;
 	font-size: 1.3em;
 	color: #444444;
+	height: 100%;
 }
 .container {
 	margin: 50px;
+}
+
+.chrismas__auth {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
 }
 
 /*-------- flex container --------*/
