@@ -53,7 +53,10 @@
                 var scopes = 'https://www.googleapis.com/auth/gmail.send';
                 
                 function handleClientLoad() {
-                    document.querySelector("#chrismas-app").hide()
+                    document.querySelector("#chrismas-app").style.display = "none"
+                    document.querySelector("#btnAuth").addEventListener('click', function(e){
+                        handleAuthClick();
+                    });
                     gapi.client.setApiKey(apiKey);
                     window.setTimeout(checkAuth, 1);
                 }
@@ -76,14 +79,13 @@
                 function handleAuthResult(authResult) {
                     if(authResult && !authResult.error) {
                     loadGmailApi();
+                    debugger
                     // $('#authorize-button').remove();
                     // $('.table-inbox').removeClass("hidden");
                     // $('#compose-button').removeClass("hidden");
                     // } else {
                     // $('#authorize-button').removeClass("hidden");
-                        document.querySelector("#btnAuth").addEventListener('click', function(e){
-                            handleAuthClick();
-                        });
+                        
                     }
                 }
                 function loadGmailApi() {
