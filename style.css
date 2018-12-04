@@ -1,8 +1,4 @@
 /*-------- global --------*/
-html {
-	height: 100%;
-}
-
 body {
 	background-color: rgba(48,79,254,0.1);
 	font-family: 'Mountains of Christmas', cursive;
@@ -66,8 +62,6 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 185px;
-	height: 170px;
 	padding: 20px;
 	margin: 0;
 	-webkit-backface-visibility: hidden;
@@ -80,7 +74,7 @@ body {
 	border-radius: 8px;
 	background-color: #FFFFFF;	
 	box-shadow: 0 13px 25px 0 rgba(48,79,254,0.1);
-	height: 520px;
+	height: 620px;
 }
 
 .card-front {
@@ -175,7 +169,8 @@ body {
 /** Card Image **/
 
 .card__image {
-	width: 50%;
+	display: block;
+	width: 300px;
 	margin: 0 auto;
 }
 

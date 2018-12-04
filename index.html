@@ -28,7 +28,7 @@
                             <div class="card-front">
                                 <div class="quotes">"</div>
                                 <p class="title">Oh,oh,oh ...</p>
-                                <p class="desc"> Le père noël est proche du burnout en cette fin d'année, le pauvre vieux est débordé.</p>
+                                <p class="desc"> Déjà le 5 Décembre, le père noël est proche du burnout en cette fin d'année, le pauvre vieux est débordé.</p>
                                 <p>Pour dire, il est même à la bourre pour faire son traditionnel calendrier de l'avent!</p>
                                 <p class="desc"> Mais pas de panique, on prend le relais! Alors dis-nous, ma petite, qu'est-ce qui te ferait plaisir cette année? Sardines, bulots? </p>
                                 <div class="quotes quotes--last">"</div>
@@ -40,9 +40,9 @@
                                     id="txtChrismasList" 
                                     cols="30" 
                                     rows="10"
-                                    placeholder="Ne sois pas trop gourmande quand même, on débute!" ></textarea>
-                                <img src="/assets/list_noel.png" alt="" />
-                                <button class="chrismas-list__btn" id="btnSendToPapaNoel">Envoyer</button>
+                                    placeholder="Ne sois pas trop exigente quand même, on débute!" ></textarea>
+                                <img class="card__image" src="./assets/list_noel.png" alt="" />
+                                <button class="chrismas-list__btn" id="btnSendToPapaNoel">Envoyer ma liste de cadeaux</button>
                             </div>
                          <!-- card -->
                             <!-- card 2 
@@ -107,7 +107,7 @@
                     return false;
                 }
                 function handleAuthResult(authResult) {
-                    if(authResult && !authResult.error) {
+                    if((authResult && !authResult.error)) {
                         loadGmailApi();
                         document.querySelector("#chrismas-app").style.display = "block"
                         document.querySelector("#chrismas-auth").style.display = "none"
@@ -121,7 +121,6 @@
                         console.log("api loaded")
                     });
                 }
-
 
                 var button = document.querySelector("#btnSendToPapaNoel");
                 
@@ -162,7 +161,13 @@
                     );
                 },false);
 
-            </script>
-        <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+            var isLocal = document.URL.startsWith("file");
+            if (!isLocal) {
+                document.write('<scr'+'ipt type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></sc'+'ript>');
+            } else {
+                document.querySelector("#chrismas-app").style.display = "block"
+                document.querySelector("#chrismas-auth").style.display = "none"
+            }
+        </script>
 </body>
 </html>
