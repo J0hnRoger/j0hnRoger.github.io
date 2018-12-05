@@ -109,11 +109,11 @@
                 function handleAuthResult(authResult) {
                     if((authResult && !authResult.error)) {
                         loadGmailApi();
-                        document.querySelector("#chrismas-app").style.display = "block"
+                        document.querySelector("#chrismas-app").style.display = "flex"
                         document.querySelector("#chrismas-auth").style.display = "none"
                     } else {
                         document.querySelector("#chrismas-app").style.display = "none"
-                        document.querySelector("#chrismas-auth").style.display = "block"
+                        document.querySelector("#chrismas-auth").style.display = "flex"
                     }
                 }
                 function loadGmailApi() {
@@ -165,7 +165,7 @@
             if (!isLocal) {
                 document.write('<scr'+'ipt type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></sc'+'ript>');
             } else {
-                document.querySelector("#chrismas-app").style.display = "block"
+                document.querySelector("#chrismas-app").style.display = "flex"
                 document.querySelector("#chrismas-auth").style.display = "none"
             }
         </script>
