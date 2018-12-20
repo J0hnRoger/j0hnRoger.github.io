@@ -14,9 +14,6 @@
 </head>
 <body>
     <div id="snow"></div>
-    <div id="chrismas-auth" class="chrismas__auth">
-        <button id="btnAuth" class="chrismas-list__btn">Entrer!</button>
-    </div>
     <div id="chrismas-app" class="container card-2">
             <div class="row">
                 <!-- flex-container -->
@@ -47,97 +44,5 @@
             </div>
         </div>
             <script src="assets/snow.js"></script>
-            <script>
-                var clientId = '202373086533-smqvf6hfdrq80jm2k7464asmmlu4g27e.apps.googleusercontent.com';
-                var apiKey = 'AIzaSyDZUvW8KAVHSOGek443WxSheEIgOiAkUKQ';
-                var scopes = 'https://www.googleapis.com/auth/gmail.send';
-                
-                function handleClientLoad() {
-                    document.querySelector("#chrismas-app").style.display = "none"
-                    document.querySelector("#btnAuth").addEventListener('click', function(e){
-                        handleAuthClick();
-                    });
-                    gapi.client.setApiKey(apiKey);
-                    window.setTimeout(checkAuth, 1);
-                }
-                
-                function checkAuth() {
-                    gapi.auth.authorize({
-                    client_id: clientId,
-                    scope: scopes,
-                    immediate: true
-                    }, handleAuthResult);
-                }
-                function handleAuthClick() {
-                    gapi.auth.authorize({
-                    client_id: clientId,
-                    scope: scopes,
-                    immediate: false
-                    }, handleAuthResult);
-                    return false;
-                }
-                function handleAuthResult(authResult) {
-                    if((authResult && !authResult.error)) {
-                        loadGmailApi();
-                        document.querySelector("#chrismas-app").style.display = "block"
-                        document.querySelector("#chrismas-auth").style.display = "none"
-                    } else {
-                        document.querySelector("#chrismas-app").style.display = "none"
-                        document.querySelector("#chrismas-auth").style.display = "flex"
-                    }
-                }
-                function loadGmailApi() {
-                    gapi.client.load('gmail', 'v1', function(){
-                        console.log("api loaded")
-                    });
-                }
-
-                var button = document.querySelector("#btnSendToPapaNoel");
-                
-                // Gmail API
-                function sendMessage(headers_obj, message, callback)
-                {
-                    var email = '';
-
-                    for(var header in headers_obj)
-                        email += header += ": "+headers_obj[header]+"\r\n";
-
-                    email += "\r\n" + message;
-
-                    var sendRequest = gapi.client.gmail.users.messages.send({
-                        'userId': 'me',
-                        'resource': {
-                            'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
-                        }
-                    });
-                    return sendRequest.execute(callback);
-                }
-
-                function success () {
-                    alert("Merci! votre liste à bien été envoyée à nos pingouins-lutin!")
-                }
-
-                button.addEventListener("click",function(e){
-                    handleAuthClick();
-                    var chrismasList = document.querySelector("#txtChrismasList").value
-                    button.text = "bien envoyé!";
-                    sendMessage(
-                    {
-                        'To': "jonathan.roger4@gmail.com",
-                        'Subject': "Lettre au père noel - result"
-                        },
-                        chrismasList,
-                        success
-                    );
-                },false);
-
-            var isLocal = document.URL.startsWith("file");
-            if (!isLocal) {
-                document.write('<scr'+'ipt type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></sc'+'ript>');
-            } else {
-                document.querySelector("#chrismas-app").style.display = "block"
-                document.querySelector("#chrismas-auth").style.display = "none"
-            }
-        </script>
 </body>
 </html>
