@@ -174,6 +174,21 @@ body {
 	margin: 0 auto;
 }
 
+.card__image 
+
+
 .plan-container {
 	position: relative;
+}
+
+/** Day 2 **/
+.card-2 .card__image {
+	width: 500px;
+    margin: 0 -20px;;
+}
+
+.card-2 .card-front,
+.card-2 .card-back {
+	overflow: hidden;
+	height: 640px;
 }
